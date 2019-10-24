@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-10-24 17:20:15</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:00.449241</p>
+<p class='attribute'><strong>状态:</strong> 通过 4 失败 1</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>接口自动化测试报告详情</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='failClass'>
+        <td>report.testDemo.MyTestCase: 汽车列表</td>
+        <td>5</td>
+        <td>4</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',5)">详情</a></td>
+    </tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_one1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        失败</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <pre>ft1.1: {'status': 1, 'message': 'ok', 'data': {'count': 25, 'carNumber': 285, 'resList': [{'masterId': 7, 'serialID': 1879, 'name': '卡罗拉', 'allSpell': 'kaluola', 'carIdList': '123730,123731,123732,123733,123734,123735,123736,123737,123738,123739,123740,123741,123742,123743,128811,128812,128813,135150,135364,135365,135366,135367,135368,135369,135370,135371,135372,135452,136095,136096,136097,136485,136486,136488,', 'carNum': 34, 'PVNum': 101484, 'HeatRank': 2, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20190702/661/0556226619_6.png', 'dealerPrice': '10.58-17.28万', 'dealerCount': '1.20', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '紧凑型车', 'type': 1}, {'id': 7, 'value': '紧凑型车销量NO.5', 'type': 4}, {'id': 8, 'value': '人气NO.2', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 2701, 'name': 'RAV4荣放', 'allSpell': 'yiqifengtianrav4', 'carIdList': '120144,120383,120384,120385,120386,120387,126943,126946,130950,130951,134648,134649,134650,134651,134652,134653,134654,', 'carNum': 17, 'PVNum': 41936, 'HeatRank': 30, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20191011/124/0332281244_6.jpg', 'dealerPrice': '17.68-26.48万', 'dealerCount': '2.50', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '紧凑SUV', 'type': 1}, {'id': 8, 'value': '紧凑SUV人气NO.10', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 1991, 'name': '凯美瑞', 'allSpell': 'kaimeirui', 'carIdList': '132764,132765,132766,132767,132784,132785,132786,132787,132788,132789,134661,134662,134663,134664,134665,134666,134667,134668,134669,134670,', 'carNum': 20, 'PVNum': 36033, 'HeatRank': 38, 'picture': 'http://img4.bitautoimg.com/autoalbum/files/20190102/204/1121042049_6.png', 'dealerPrice': '17.98-27.98万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '中型车', 'type': 1}, {'id': 7, 'value': '中型车销量NO.3', 'type': 4}, {'id': 8, 'value': '人气NO.10', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': True, 'brandName': '广汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 5489, 'name': '亚洲龙', 'allSpell': 'fengtianavalon', 'carIdList': '131049,131649,132494,132495,132579,132580,134655,134656,134657,134658,134659,134660,137246,137446,137447,137448,', 'carNum': 16, 'PVNum': 35578, 'HeatRank': 40, 'picture': 'http://img3.bitautoimg.com/autoalbum/files/20190114/353/0430073533_6.png', 'dealerPrice': '19.98-28.98万', 'dealerCount': '0.50', 'newSaleStatus': 102, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '中型车', 'type': 1}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': '外观绝对震撼你'}, {'masterId': 7, 'serialID': 2694, 'name': '汉兰达', 'allSpell': 'hanlanda', 'carIdList': '128431,128432,128433,128434,128435,128436,128437,128438,135217,135218,135219,135220,135221,135222,135223,135224,136914,', 'carNum': 17, 'PVNum': 32428, 'HeatRank': 49, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20190102/923/0952389232_6.png', 'dealerPrice': '23.98-32.58万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '中型SUV', 'type': 1}, {'id': 7, 'value': '中型SUV销量NO.9', 'type': 4}, {'id': 8, 'value': '人气NO.5', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 4190, 'name': '雷凌', 'allSpell': 'levin', 'carIdList': '124255,124256,124257,124258,124259,124260,124261,124262,124263,124264,124265,124266,130133,130139,132397,132398,132399,132400,132401,132402,132403,132404,132405,133606,133608,133958,133959,133960,133961,133962,133963,133964,133965,134165,134166,134167,134168,134169,134170,134171,134172,134173,134174,', 'carNum': 43, 'PVNum': 29270, 'HeatRank': 61, 'picture': 'http://img3.bitautoimg.com/autoalbum/files/20190927/989/0325469898_6.jpg', 'dealerPrice': '10.78-15.88万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '紧凑型车', 'type': 1}, {'id': 7, 'value': '紧凑型车销量NO.9', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 2407, 'name': '威驰', 'allSpell': 'xinweichi', 'carIdList': '121232,121259,121260,121261,121262,121263,121264,121265,135333,135334,135336,135337,135338,135339,135340,135341,', 'carNum': 16, 'PVNum': 19362, 'HeatRank': 102, 'picture': 'http://img3.bitautoimg.com/autoalbum/files/20190102/044/0355530445_6.png', 'dealerPrice': '6.88-11.18万', 'dealerCount': '1.20', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型车', 'type': 1}, {'id': 7, 'value': '小型车销量NO.7', 'type': 4}, {'id': 8, 'value': '人气NO.2', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 4016, 'name': 'YARiS L 致炫', 'allSpell': 'yarislzhixuan', 'carIdList': '120522,120532,120533,120534,120535,120536,120537,120539,124455,124456,129262,129263,132378,132379,132380,132381,132382,132383,132384,137836,137837,137838,137839,137840,137846,137847,137848,', 'carNum': 27, 'PVNum': 17761, 'HeatRank': 113, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20191021/103/0304511032_6.jpg', 'dealerPrice': '6.88-10.38万', 'dealerCount': '1.00', 'newSaleStatus': 102, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型车', 'type': 1}, {'id': 7, 'value': '小型车销量NO.2', 'type': 4}, {'id': 8, 'value': '人气NO.3', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 1868, 'name': '普拉多', 'allSpell': 'puladuo', 'carIdList': '126930,126931,126932,126933,126934,126935,126936,126937,126938,126939,132337,132338,', 'carNum': 12, 'PVNum': 17049, 'HeatRank': 124, 'picture': 'http://img3.bitautoimg.com/autoalbum/files/20190102/352/1119573525_6.png', 'dealerPrice': '43.58-60.48万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '大型SUV', 'type': 1}, {'id': 7, 'value': '大型SUV销量NO.2', 'type': 4}, {'id': 8, 'value': '人气NO.3', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 4322, 'name': '丰田C-HR', 'allSpell': 'chrconcept', 'carIdList': '129843,129844,129850,129893,132385,132387,132389,132390,133394,133395,133396,133397,133398,133399,', 'carNum': 14, 'PVNum': 11670, 'HeatRank': 169, 'picture': 'http://img4.bitautoimg.com/autoalbum/files/20190102/693/1146016933_6.png', 'dealerPrice': '14.18-17.88万', 'dealerCount': '0.50', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型SUV', 'type': 1}, {'id': 7, 'value': '小型SUV销量NO.9', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田', 'buzzWord': '标配10个安全气囊'}, {'masterId': 7, 'serialID': 5273, 'name': '奕泽', 'allSpell': 'yize', 'carIdList': '129171,129851,129852,131608,134680,134681,134682,', 'carNum': 7, 'PVNum': 11085, 'HeatRank': 175, 'picture': 'http://img4.bitautoimg.com/autoalbum/files/20190102/328/1156313286_6.png', 'dealerPrice': '14.68-17.58万', 'dealerCount': '1.50', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型SUV', 'type': 1}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': True, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 2848, 'name': '皇冠', 'allSpell': 'xinhuangguan', 'carIdList': '127523,127524,127525,127526,127527,', 'carNum': 5, 'PVNum': 10278, 'HeatRank': 188, 'picture': 'http://img2.bitautoimg.com/autoalbum/files/20190102/891/0953268910_6.png', 'dealerPrice': '25.08-37.48万', 'dealerCount': '2.50', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '中大型车', 'type': 1}, {'id': 8, 'value': '中大型车人气NO.9', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 4937, 'name': 'YARiS L 致享', 'allSpell': 'yarislzhixuansanxiangban', 'carIdList': '121800,123283,123284,123285,123286,123287,123288,123289,123290,129264,129265,132372,132373,132374,132375,132376,132377,137841,137842,137843,137844,137845,', 'carNum': 22, 'PVNum': 7952, 'HeatRank': 227, 'picture': 'http://img4.bitautoimg.com/autoalbum/files/20191021/921/0305299217_6.jpg', 'dealerPrice': '6.88-10.58万', 'dealerCount': '1.30', 'newSaleStatus': 102, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型车', 'type': 1}, {'id': 7, 'value': '小型车销量NO.6', 'type': 4}, {'id': 8, 'value': '人气NO.7', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 4935, 'name': '威驰FS', 'allSpell': 'weichiwumenban', 'carIdList': '121798,123387,123388,123389,123397,123398,123401,123402,', 'carNum': 8, 'PVNum': 6451, 'HeatRank': 262, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20190102/395/0408053956_6.png', 'dealerPrice': '6.88-10.78万', 'dealerCount': '1.20', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '小型车', 'type': 1}, {'id': 7, 'value': '小型车销量NO.10', 'type': 4}, {'id': 8, 'value': '人气NO.9', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 3088, 'name': '埃尔法', 'allSpell': 'alphard', 'carIdList': '133770,133771,', 'carNum': 2, 'PVNum': 5087, 'HeatRank': 303, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20190114/535/0357255353_6.png', 'dealerPrice': '80.50-85.60万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '进口', 'type': 1}, {'id': 2, 'value': '大型MPV', 'type': 1}, {'id': 8, 'value': '大型MPV人气NO.1', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 3840, 'name': '丰田86', 'allSpell': 'fengtiangt86', 'carIdList': '133309,133310,', 'carNum': 2, 'PVNum': 3866, 'HeatRank': 357, 'picture': 'http://img1.bitautoimg.com/autoalbum/files/20180810/050/1037090501_6.png', 'dealerPrice': '27.78-28.78万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '进口', 'type': 1}, {'id': 2, 'value': '小型跑车', 'type': 1}, {'id': 8, 'value': '小型跑车人气NO.2', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 5590, 'name': '威尔法', 'allSpell': 'weierfashuangqing', 'carIdList': '132605,133603,', 'carNum': 2, 'PVNum': 2407, 'HeatRank': 464, 'picture': 'http://img4.bitautoimg.com/autoalbum/files/20190125/558/0258025589_6.png', 'dealerPrice': '80.50-85.60万', 'dealerCount': '', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '进口', 'type': 1}, {'id': 2, 'value': '大型MPV', 'type': 1}, {'id': 8, 'value': '大型MPV人气NO.4', 'type': 4}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '丰田', 'buzzWord': ''}, {'masterId': 7, 'serialID': 5542, 'name': '卡罗拉双擎E+', 'allSpell': 'kaluolashuangqinge', 'carIdList': '131880,132189,132190,132191,', 'carNum': 4, 'PVNum': 1859, 'HeatRank': 534, 'picture': 'http://img3.bitautoimg.com/autoalbum/files/20181228/754/0205087547_6.png', 'dealerPrice': '20.78-23.08万', 'dealerCount': '4.30', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '紧凑型车', 'type': 1}, {'id': 4, 'value': '插电混动', 'type': 2}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田新能源', 'buzzWord': ''}, {'masterId': 7, 'serialID': 5591, 'name': '雷凌双擎E+', 'allSpell': 'leilingshuangqinge', 'carIdList': '132606,132611,132612,132932,', 'carNum': 4, 'PVNum': 1262, 'HeatRank': 676, 'picture': 'http://img2.bitautoimg.com/autoalbum/files/20190129/145/0925191452_6.png', 'dealerPrice': '20.38-21.88万', 'dealerCount': '1.00', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '紧凑型车', 'type': 1}, {'id': 4, 'value': '插电混动', 'type': 2}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '广汽丰田新能源', 'buzzWord': ''}, {'masterId': 7, 'serialID': 1869, 'name': '柯斯达', 'allSpell': 'fengtiankesida', 'carIdList': '116150,116151,116152,116153,116154,116155,116156,116157,', 'carNum': 8, 'PVNum': 1013, 'HeatRank': 777, 'picture': 'http://img2.bitautoimg.com/autoalbum/files/20120306/463/0614084637_6.jpg', 'dealerPrice': '38.25-55.68万', 'dealerCount': '3.00', 'newSaleStatus': 0, 'tags': [{'id': 1, 'value': '丰田', 'type': 1}, {'id': 6, 'value': '国产', 'type': 1}, {'id': 2, 'value': '轻型客车', 'type': 1}], 'promotionLogo': '', 'promotionTitle': '', 'promotionLink': '', 'ArStatus': False, 'brandName': '一汽丰田', 'buzzWord': ''}]}}
+Traceback (most recent call last):
+  File "/Users/danish/Downloads/DemoApi-1/report/testDemo.py", line 14, in test_one1
+    self.assertEqual(carname,"卡罗")
+AssertionError: '卡罗拉' != '卡罗'
+- 卡罗拉
+?   -
++ 卡罗
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_one2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: {'code': 0, 'msg': None, 'data': {'src': 'http://47.93.242.110:80/images/upload/2019-10-24/cf4d60c8-0641-4f30-aa7a-96308bf6f8d9.jpeg', 'title': None}}
+0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_one3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>pt1.3: {"status":200,"data":"0bd255d8-8548-4431-8d54-c987ed85b05f","error":null,"pageSize":0,"total":null}
+200
+{'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 'Access-Control-Max-Age': '3600', 'Access-Control-Allow-Headers': 'x-requested-with', 'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Date': 'Thu, 24 Oct 2019 09:20:15 GMT'}
+application/json;charset=UTF-8
+{'status': 200, 'data': '0bd255d8-8548-4431-8d54-c987ed85b05f', 'error': None, 'pageSize': 0, 'total': None}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_one4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        通过</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <pre>pt1.4: 1223333
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_one5</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        通过</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <pre>pt1.5: 可能吧
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>5</td>
+            <td>4</td>
+            <td>1</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:4, name:'通过'},
+                        {value:1, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
