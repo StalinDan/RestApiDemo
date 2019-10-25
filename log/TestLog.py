@@ -20,8 +20,8 @@ class TestLog(object):
         self.log_path = "../log/"
         self.log_name = self.log_path + self.log_time + 'test.log'
 
-        # fh = logging.FileHandler(self.log_name, 'a')  # 追加模式  这个是python2的
-        fh = logging.FileHandler(self.log_name, 'a', encoding='utf-8')  # 这个是python3的
+        fh = logging.FileHandler(self.log_name, 'a')  # 追加模式  这个是python2的
+        # fh = logging.FileHandler(self.log_name, 'a', encoding='utf-8')  # 这个是python3的
         fh.setLevel(logging.INFO)
 
         # 再创建一个handler，用于输出到控制台

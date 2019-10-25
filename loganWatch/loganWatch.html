@@ -200,8 +200,8 @@
         
     <div class='page-header'>
         <h1>间休手表测试报告</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2019-10-25 14:53:11</p>
-<p class='attribute'><strong>运行时长:</strong> 0:01:15.290765</p>
+    <p class='attribute'><strong>开始时间:</strong> 2019-10-25 17:26:14</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:20.092281</p>
 <p class='attribute'><strong>状态:</strong> 错误 1</p>
 
     </div>
@@ -253,64 +253,17 @@
     <div id='div_ft1.1' class="popup_window">
         <pre>ft1.1: error
 Traceback (most recent call last):
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connection.py", line 160, in _new_conn
-    (self._dns_host, self.port), self.timeout, **extra_kw)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/util/connection.py", line 80, in create_connection
-    raise err
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/util/connection.py", line 70, in create_connection
-    sock.connect(sa)
-TimeoutError: [Errno 60] Operation timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connectionpool.py", line 603, in urlopen
-    chunked=chunked)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connectionpool.py", line 355, in _make_request
-    conn.request(method, url, **httplib_request_kw)
-  File "/Users/danish/anaconda3/lib/python3.7/http/client.py", line 1229, in request
-    self._send_request(method, url, body, headers, encode_chunked)
-  File "/Users/danish/anaconda3/lib/python3.7/http/client.py", line 1275, in _send_request
-    self.endheaders(body, encode_chunked=encode_chunked)
-  File "/Users/danish/anaconda3/lib/python3.7/http/client.py", line 1224, in endheaders
-    self._send_output(message_body, encode_chunked=encode_chunked)
-  File "/Users/danish/anaconda3/lib/python3.7/http/client.py", line 1016, in _send_output
-    self.send(msg)
-  File "/Users/danish/anaconda3/lib/python3.7/http/client.py", line 956, in send
-    self.connect()
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connection.py", line 183, in connect
-    conn = self._new_conn()
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connection.py", line 169, in _new_conn
-    self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x10ab8b780&gt;: Failed to establish a new connection: [Errno 60] Operation timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/adapters.py", line 449, in send
-    timeout=timeout
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/connectionpool.py", line 641, in urlopen
-    _stacktrace=sys.exc_info()[2])
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/urllib3/util/retry.py", line 399, in increment
-    raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.3', port=80): Max retries exceeded with url: /api2/bed/bind (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x10ab8b780&gt;: Failed to establish a new connection: [Errno 60] Operation timed out'))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/danish/Downloads/DemoApi-1/loganWatch/loganWatchTestCase.py", line 27, in test_bindBed
-    r = requests.get("http://192.168.1.3:80/api2/bed/bind")
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/api.py", line 75, in get
-    return request('get', url, params=params, **kwargs)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/api.py", line 60, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
-    r = adapter.send(request, **kwargs)
-  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/adapters.py", line 516, in send
-    raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.3', port=80): Max retries exceeded with url: /api2/bed/bind (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x10ab8b780&gt;: Failed to establish a new connection: [Errno 60] Operation timed out'))
+  File "/Users/danish/Downloads/DemoApi-1/loganWatch/loganWatchTestCase.py", line 39, in test_bindBed
+    response = r.json()
+  File "/Users/danish/.local/share/virtualenvs/danish-VMqWjhqe/lib/python3.7/site-packages/requests/models.py", line 889, in json
+    self.content.decode(encoding), **kwargs
+  File "/Users/danish/anaconda3/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/Users/danish/anaconda3/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Users/danish/anaconda3/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 </pre>
     </div>
     <!--css div popup end-->

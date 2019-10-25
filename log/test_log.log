@@ -1,0 +1,10 @@
+2019-10-25 17:06:19,983 loganWatchTestCase.py[line:35] INFO 12345
+2019-10-25 17:06:19,983 loganWatchTestCase.py[line:37] ERROR error
+2019-10-25 17:14:37,029 loganWatchTestCase.py[line:35] INFO 12345
+2019-10-25 17:14:37,031 loganWatchTestCase.py[line:37] ERROR error
+2019-10-25 17:15:36,765 loganWatchTestCase.py[line:35] INFO 12345
+2019-10-25 17:15:36,765 loganWatchTestCase.py[line:37] ERROR error
+2019-10-25 17:16:40,478 loganWatchTestCase.py[line:35] INFO 12345
+2019-10-25 17:16:40,478 loganWatchTestCase.py[line:37] ERROR error
+2019-10-25 17:22:51,970 loganWatchTestCase.py[line:35] INFO 12345
+2019-10-25 17:22:51,970 loganWatchTestCase.py[line:37] ERROR error
